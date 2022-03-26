@@ -73,8 +73,30 @@ public class ShopTest {
         shop.addToStock(acoustic);
         shop.addToStock(semiAcoustic);
         shop.addToStock(bass);
+        shop.addToStock(sheet);
+        shop.addToStock(strings);
         ArrayList<ISell> leftHandedGuitars = shop.getLeftHandedGuitars();
         assertEquals(2, leftHandedGuitars.size());
 
+    }
+
+    @Test
+    public void canSell(){
+        shop.addToStock(electric);
+        shop.addToStock(acoustic);
+        shop.addToStock(semiAcoustic);
+        shop.addToStock(bass);
+        shop.addToStock(sheet);
+        shop.addToStock(strings);
+        shop.sell(acoustic);
+        assertEquals(2550, shop.getTill());
+        assertEquals(5, shop.stockCount());
+    }
+
+    @Test
+    public void canBuy(){
+        shop.buy(electric);
+        assertEquals(1600, shop.getTill());
+        assertEquals(1, shop.stockCount());
     }
 }

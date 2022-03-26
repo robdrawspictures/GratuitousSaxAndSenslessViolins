@@ -1,3 +1,4 @@
+import behaviours.IBuy;
 import behaviours.ISell;
 import stock_management.instruments.Guitar;
 
@@ -47,6 +48,16 @@ public class Shop {
             totalMarkup += item.markUp();
         }
         return totalMarkup;
+    }
+
+    public void buy(IBuy item){
+        this.till -= item.getCost();
+        addToStock((ISell) item);
+    }
+
+    public void sell(ISell item){
+        this.till += item.getRRP();
+        this.stock.remove(item);
     }
 
     public ArrayList<ISell> getLeftHandedGuitars(){
